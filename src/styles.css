@@ -92,6 +92,51 @@ th { color: var(--muted); font-weight: 650; background: var(--surface-soft); } t
 /* 7: hna l-button fixed fo2 l-sidebar, ya3ne ma byekhtefe ma3 scrolling. */
 .brand .logo{border:0;cursor:pointer}
 .settingsGrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:20px;margin-bottom:20px}.settingsSectionHeading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}.settingsSectionHeading h3{margin-bottom:5px}.settingsStatus{padding:8px 12px;border:1px solid var(--border);border-radius:999px;color:var(--primary-dark);background:var(--primary-soft);font-size:12px;font-weight:700}.profileMark{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--primary);color:#fff;font-weight:800}.settingsInfo>svg{color:var(--primary)}.settingsList{display:grid;gap:0}.settingsList div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--border);font-size:12px}.settingsList div:last-child{border-bottom:0}.settingsList span{color:var(--muted)}.settingsList b{text-align:right;color:var(--text)}.companyNote{display:flex;align-items:flex-start;gap:15px}.companyNote p{max-width:760px;margin-top:6px;color:var(--muted);font-size:13px;line-height:1.7}.companyIcon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:var(--primary-soft);color:var(--primary)}
+aaany /* hna override akheer la nضمن انno l-ar2am w l-text ybayno bi dark mode */
+.dark, .dark body { color-scheme: dark; }
+.dark h1, .dark h2, .dark h3, .dark p, .dark span, .dark label, .dark strong, .dark b, .dark td, .dark th { color: inherit; }
+.dark .stat strong, .dark .card h3, .dark .cardtitle h3, .dark .customerMeta b, .dark .orderid { color: #fff; }
+.dark .muted, .dark .subline, .dark .count, .dark .stathead, .dark .cardtitle p, .dark .driverCard p, .dark .assignmentList label, .dark .customerHistory a { color: #fff; }
+.dark .customerHistory a b, .dark .cardtitle a, .dark .back { color: #fff; }
+.dark .headerPanel a, .dark .headerPanel a span, .dark .headerPanel p { color: #fff; }
+.dark .headerPanel a span, .dark .headerPanel p { color: #fff; }
+.dark nav a, .dark .navbottom > a, .dark .support small, .dark .profile small, .dark .workspace, .dark .icon, .dark .settingsList span, .dark .companyNote p { color: #fff; }
+.dark .settingsList b, .dark .settingsStatus, .dark .settingsInfo, .dark .form label, .dark .formsection h3, .dark .modal, .dark .customerModal { color: #fff; }
+.dark table, .dark table td, .dark table th, .dark .customerHistory a, .dark .assignmentList label, .dark .maplabel, .dark .map-status, .dark .mapfallback { color: #fff; }
+.dark .searchPanel .search, .dark .searchPanel .search input { color: #fff; }
+.dark .searchPanel .search input::placeholder, .dark input::placeholder, .dark textarea::placeholder { color: #fff; opacity: .82; }
+.dark .badge, .dark .badge i, .dark .map-status span, .dark .maplabel small, .dark .map-status small { color: #fff; }
+.dark .recharts-text, .dark .recharts-label { fill: #fff; color: #fff; }
+/* hna override a5eer byghaleb ay style adeem 3a kel l-3anawin w l-bars */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
+.dark .eyebrow, .dark .cardtitle, .dark .cardtitle h3,
+.dark .sectionTitle, .dark .formsection h3, .dark .settingsSectionHeading h3,
+.dark .welcome h2, .dark .toolbar h2, .dark .detailhead h2,
+.dark .stat strong, .dark .stathead, .dark .stat small,
+.dark nav a, .dark nav a span, .dark .navbottom a, .dark .navbottom a span,
+.dark .brand, .dark .brand b, .dark .workspace, .dark .support,
+.dark .profile, .dark .profile b, .dark .profile small,
+.dark .tablecard th, .dark .tablecard td, .dark .customerMeta,
+.dark .customerMeta span, .dark .customerMeta b, .dark .count,
+.dark .headerPanel, .dark .headerPanel b, .dark .headerPanel p,
+.dark .headerPanel a, .dark .headerPanel a span,
+.dark .modalHeader, .dark .modalHeader h2, .dark .form label,
+.dark .settingsList, .dark .settingsList span, .dark .settingsList b,
+.dark .companyNote, .dark .companyNote p, .dark .maplabel,
+.dark .maplabel small, .dark .map-status, .dark .map-status small,
+.dark .map-status span, .dark .mapfallback {
+  color: #fff !important;
+}
+.dark .cardtitle a, .dark .back, .dark .orderid, .dark .customerHistory a b {
+  color: #fff !important;
+}
+.dark .badge, .dark .badge i, .dark .settingsStatus {
+  color: #fff !important;
+}
+.dark .recharts-text, .dark .recharts-label, .dark .recharts-cartesian-axis-tick-value {
+  fill: #fff !important;
+}
+.dark .recharts-default-tooltip, .dark .recharts-tooltip-label, .dark .recharts-tooltip-item { color: var(--text) !important; }
 @media (max-width:800px){.settingsGrid{grid-template-columns:1fr}.settingsStatus{align-self:flex-start}.settingsList div{flex-direction:column;gap:5px}.settingsList b{text-align:left}}
 @media (max-width: 1000px) { aside { width: 210px; } main { margin-left: 210px; width: calc(100% - 210px); } header, .page { padding-left: 24px; padding-right: 24px; } .stats { grid-template-columns: repeat(2, 1fr); } .grid2, .trackinggrid { grid-template-columns: 1fr; } }
 @media (max-width: 700px) { aside { display: none; } main { margin-left: 0; width: 100%; } header { height: 72px; padding: 0 16px; } .page { padding: 22px 16px; } .stats { grid-template-columns: 1fr 1fr; gap: 10px; } .stat, .card { padding: 15px; } .welcome, .toolbar, .detailhead { align-items: flex-start; flex-direction: column; } .actions { gap: 4px; } h2 { font-size: 22px; } .headerPanel,.searchPanel{right:16px;width:min(350px,calc(100vw - 32px));} }
