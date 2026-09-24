@@ -1,0 +1,22 @@
+function Customers(){const[rows,setRows]=useState<Customer[]>([]);
+const[orders,setOrders]=useState<Order[]>([]);
+const[name,setName]=useState('');
+const[selected,setSelected]=useState<string|null>(null);
+useEffect(()=>{Promise.all([customerService.list(),orderService.list()]).then(([customers,loadedOrders])=>{const data=customers.length?customers:seedNames.map((name,i)=>safeCustomer({id:`cust-${String(i+1).padStart(3,'0')}`,name,email:`${name.toLowerCase().replace(/ /g,'_')}@example.com`,phone:`+961 70 ${120000+i}`,address:`${10+i} Main Street`,city:cities[i%7],joinedDate:'2025-01-15'},i));
+setRows(data.map(safeCustomer));
+setOrders(loadedOrders.length?loadedOrders:seed())}).catch(()=>setOrders(seed()))},[]);
+const stats=(c:Customer)=>{const matches=orders.filter(o=>(o.customerId&&o.customerId===c.id)||(o.customerEmail&&o.customerEmail.toLowerCase()===c.email.toLowerCase())||(!o.customerId&&!o.customerEmail&&o.customer===c.name));
+const latest=[...matches].sort((a,b)=>new Date(b.date||b.updatedAt).getTime()-new Date(a.date||a.updatedAt).getTime())[0];return {matches,count:matches.length,total:matches.reduce((sum,o)=>sum+(Number(o.total)||0),0),last:latest?.date||'—'}};const add=async()=>{if(!name.trim())return;const c=safeCustomer({id:crypto.randomUUID(),name:name.trim(),fullName:name.trim(),city:'Beirut',joinedDate:new Date().toISOString().slice(0,10)},rows.length);
+await customerService.create(c);
+setRows(r=>[c,...r]);
+setName('')};const edit=async(c:Customer)=>{const n=prompt('Customer full name',c.fullName||c.name);
+if(n&&n!==c.fullName){await customerService.update(c.id,{name:n,fullName:n});
+setRows(r=>r.map(x=>x.id===c.id?{...x,name:n,fullName:n}:x))}};const remove=async(id:string)=>{if(confirm('Delete customer?')){await customerService.remove(id);
+setRows(r=>r.filter(x=>x.id!==id));
+if(selected===id)setSelected(null)}};return <div className="page"><div className="toolbar"><div><p className="muted">Customer profiles and order history</p><h2>Customers</h2></div><div className="search"><input placeholder="New customer name" value={name} onChange={e=>setName(e.target.value)}/><button className="btn primary" onClick={add}><Plus/>Add</button></div></div><div className="customergrid">{rows.map(c=>{const s=stats(c);
+const active=c.status!=='Inactive'&&s.count>0;return <div className="card customerCard" key={c.id}><div className="customerTop"><div className="bigavatar">{c.name.split(' ').map(x=>x[0]).join('').slice(0,2)}</div>
+<div><button className="icon" aria-label={`Edit ${c.name}`} onClick={()=>edit(c)}><Edit3 size={15}/></button><button className="icon" aria-label={`Delete ${c.name}`} onClick={()=>remove(c.id)}><Trash2 size={15}/></button></div></div><h3>{c.fullName||c.name} <span className="count">{active?'Active':c.status}</span></h3><p>{c.email||'No email'} · {c.phone||'No phone'}</p><p>{c.address||'No address'}{c.area?`, ${c.area}`:''}, {c.city}</p><div className="customerMeta"><span>{s.count} orders</span><b>${s.total.toFixed(2)}</b><span>Last: {s.last}</span></div><button className="btn" onClick={()=>setSelected(selected===c.id?null:c.id)}>{selected===c.id?'Hide history':'View order history'}</button>{selected===c.id&&<div className="customerHistory">{s.matches.length?s.matches.map(order=><Link key={order.id} to={`/orders/${order.id}`}><b>{order.id}</b><span>{order.date||'—'} · ${(order.total||0).toFixed(2)}</span><Badge status={order.status}/></Link>):<small>No orders linked yet.</small>}</div>
+}</div>
+})}</div>
+</div>}
+/* 5: hna analytics page b7ot charts 3ashan insights w performance summary. */

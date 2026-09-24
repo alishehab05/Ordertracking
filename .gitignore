@@ -1,0 +1,5 @@
+# hayda by5alle l-files l-kbire w l-secrets barra men l-repo
+node_modules/
+dist/
+.env
+*.tsbuildinfo
