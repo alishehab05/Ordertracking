@@ -1,3 +1,4 @@
+// hayda byestورد React w hooks la نبني l-app w ندير l-state
 import React,{useEffect,useMemo,useState} from 'react';
 import {createRoot} from 'react-dom/client';import {BrowserRouter,useNavigate,useLocation,useParams,Routes,Route,Link,Navigate} from 'react-router-dom';
 import {LayoutDashboard,ShoppingCart,Users,UserRound,BarChart3,Settings,Truck,Plus,Search,Bell,Sun,Moon,MapPin,Package,Menu,X,ArrowUpRight,Trash2,Edit3,Play,Pause} from 'lucide-react';import {AreaChart,Area,XAxis,YAxis,Tooltip,ResponsiveContainer} from 'recharts';import './styles.css';import {authService,orderService,customerService,driverService,normalizeCustomer,linkOrdersToDrivers,normalizeDriver} from './services';import type {AuthUser,Order,Customer,Driver,ProfileUpdate,Status,CustomerStatus} from './types';
